@@ -12,6 +12,9 @@
 
     <!-- Template main CSS File -->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+    <!--Favicon Link-->
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 </head>
 <body>
     <div class="container">
@@ -25,7 +28,7 @@
                     <h5>Credit Card Authorization</h5>
                 </div>
 
-                <form method="post">
+                <form method="post" id="my-form">
                     {% csrf_token %}
                     <div class="row">
                         <div class="mb-3 col-lg-6">
@@ -65,7 +68,10 @@
                     </div>
 
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-secondary">Submit</button>
+                        <button id="submit-btn" type="submit" class="btn btn-secondary">
+                            <span id="spinner" class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span> 
+                            Submit
+                        </button>
                     </div>
                 </form>
             </div>
@@ -80,6 +86,7 @@
     <!--JS CUSTOM FUNCTIONS-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            console.log("DOM Loaded .")
 
             // Card Number Formatting
 
@@ -100,6 +107,23 @@
                 }
                 e.target.value = value;
             });
+
+
+            // Spinner and redirect
+            const submitBtn = document.getElementById('submit-btn');
+            const spinner = document.getElementById('spinner');
+            const form = document.getElementById('my-form');
+
+            if (submitBtn && spinner && form) {
+                form.addEventListener('submit', function () {
+                    console.log("Form submitting....");
+                    submitBtn.disabled = true;
+                    spinner.classList.remove('d-none');
+                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Submitting...';
+                });
+            } else {
+                console.log("Button or spinner not found!");
+            }
         });
     </script>
 </body>
