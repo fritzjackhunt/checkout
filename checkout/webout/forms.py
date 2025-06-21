@@ -1,19 +1,12 @@
 from django import forms
+from .countries import COUNTRIES
 
 class MyForm(forms.Form):
 
-    first_name = forms.CharField(
+    full_name = forms.CharField(
         max_length=100,
         widget=forms.TextInput(attrs={
-            'placeholder': 'John',
-            'class': 'form-control'
-        })
-    )
-
-    last_name = forms.CharField(
-        max_length=100,
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Doe',
+            'placeholder': 'Enter your full name',
             'class': 'form-control'
         })
     )
@@ -61,13 +54,28 @@ class MyForm(forms.Form):
         })
     )
 
-    address = forms.CharField(
+    address1 = forms.CharField(
         max_length=100,
         widget=forms.TextInput(attrs={
-            'placeholder': 'Billing Address',
+            'placeholder': 'Address Line 1',
             'class': 'form-control'
         })
     )
+
+    address2 = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Address Line 2',
+            'class': 'form-control'
+        })
+    )
+
+    country = forms.ChoiceField(
+        choices=COUNTRIES, 
+        widget=forms.Select(attrs={
+        'placeholder':'Select your country',
+        'class':'form-control'
+    }))
 
     amount = forms.CharField(
         max_length=4,

@@ -25,22 +25,23 @@
                 </div>
 
                 <div class="txt-center">
-                    <h5>Credit Card Authorization</h5>
+                    <h5>Checkout</h5>
+                </div>
+
+                <div class="text-center">
+                    <h6>Pay to: <span>Thegoodvibe</span></h6>
                 </div>
 
                 <form method="post" id="my-form">
                     {% csrf_token %}
                     <div class="row">
-                        <div class="mb-3 col-lg-6">
-                            {{form.first_name}}
-                        </div>
-
-                        <div class="mb-3 col-lg-6">
-                            {{form.last_name}}
-                        </div>
 
                         <div class="mb-3 col-lg-12">
                             {{form.email}}
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            {{form.full_name}}
                         </div>
 
                         <div class="mb-3">
@@ -59,7 +60,15 @@
                         </div>
 
                         <div class="mb-3 col-lg-12">
-                            {{form.address}}
+                            {{form.address1}}
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            {{form.address2}}
+                        </div>
+
+                        <div class="mb-3 col-lg-12">
+                            {{form.country}}
                         </div>
 
                         <div class="mb-3 col-lg-12">
@@ -68,9 +77,9 @@
                     </div>
 
                     <div class="d-grid gap-2">
-                        <button id="submit-btn" type="submit" class="btn btn-secondary">
+                        <button id="submit-btn" type="submit" class="btn btn-primary">
                             <span id="spinner" class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span> 
-                            Submit
+                            Pay Now
                         </button>
                     </div>
                 </form>

